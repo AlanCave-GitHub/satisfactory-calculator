@@ -52,6 +52,7 @@
         {"name": "Assembly Director System","key_name": "assembly-director-system","tier": 1,"stack_size": 50},
         {"name": "Automated Wiring","key_name": "automated-wiring","tier": 1,"stack_size": 50},
         {"name": "Battery","key_name": "battery","tier": 1,"stack_size": 200},
+        {"name": "Beacon","key_name": "beacon", "tier": 1, "stack_size": 100},
 
         {"name": "Cable","key_name": "cable","tier": 1,"stack_size": 100},
         {"name": "Caterium Ingot","key_name": "caterium-ingot","tier": 1,"stack_size": 100},
@@ -154,6 +155,10 @@
         {"name": "Automated Wiring","key_name": "automated-wiring","category": "crafting2","time": 24,"ingredients": [["stator", 1],["cable", 20]],"product": ["automated-wiring", 1]},
         {"name": "Alternate: Automated Speed Wiring","key_name": "alt-automated-speed-wiring","category": "crafting3","time": 32,"ingredients": [["stator", 2],["wire", 40],["high-speed-connector", 1]],"product": ["automated-wiring", 4]},
         {"name": "Battery","key_name": "battery","category": "crafting3","time": 3,"ingredients": [["sulfuric-acid", 2.5],["alumina-solution", 2],["aluminum-casing", 1]],"product": ["battery", 1]},
+
+        {"name": "Beacon", "key_name": "beacon", "category": "crafting3", "time": 8, "ingredients": [["iron-plate", 3], ["iron-rod", 1], ["wire", 15], ["cable", 2]], "product": ["beacon", 1]},
+        {"name": "Alternate: Crystal Beacon", "key_name": "crystal-beacon", "category": "crafting3", "time": 120, "ingredients": [["steel-beam", 4], ["steel-pipe", 16], ["crystal-oscillator", 1]], "product": ["beacon", 20]},
+
         {"name": "Alternate: Classic Battery","key_name": "alt-classic-battery","category": "crafting3","time": 8,"ingredients": [["sulfur", 6],["alclad-aluminum-sheet", 7],["plastic", 8],["wire", 12]],"product": ["battery", 4]},
 
         {"name": "Cable","key_name": "cable","category": "crafting1","time": 2,"ingredients": [["wire", 2]],"product": ["cable", 1]},
@@ -305,6 +310,7 @@
         {"name": "Alternate: Turbo Pressure Motor","key_name": "alt-turbo-pressure-motor","category": "crafting3","time": 32,"ingredients": [["motor", 4],["pressure-conversion-cube", 1],["packaged-nitrogen-gas", 24],["stator", 8]],"product": ["turbo-motor", 2]},
 
         {"name": "Uranium Fuel Rod","key_name": "uranium-fuel-rod","category": "crafting3","time": 150,"ingredients": [["encased-uranium-cell", 50],["encased-industrial-beam", 3],["electromagnetic-control-rod", 5]],"product": ["uranium-fuel-rod", 1]},
+        {"name": "Alternate: Uranium Fuel Unit", "key_name": "uranium-fuel-unit","category": "crafting3","time": 300,"ingredients": [["encased-uranium-cell", 100],["crystal-oscillator", 3],["electromagnetic-control-rod", 10], ["beacon", 6]],"product": ["uranium-fuel-rod", 3]},
 
         {"name": "Versatile Framework","key_name": "versatile-framework","category": "crafting2","time": 24,"ingredients": [["modular-frame", 1],["steel-beam", 12]],"product": ["versatile-framework", 2]},
         {"name": "Alternate: Flexible Framework","key_name": "alt-flexible-framework","category": "crafting3","time": 16,"ingredients": [["modular-frame", 1],["steel-beam", 6],["rubber", 8]],"product": ["versatile-framework", 2]},

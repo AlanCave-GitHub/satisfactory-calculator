@@ -134,18 +134,19 @@ function getMachineCountString(d) {
 }
 
 function getTotalItemRate(node, totals) {
-    let totalItemRate = (node.count.toFloat() * spec.format.rateFactor * node.recipe.product.amount / node.recipe.time)
+    let divisor = Math.max(node.recipe.time, 1);
+    let totalItemRate = (node.count.toFloat() * spec.format.rateFactor * node.recipe.product.amount / divisor)
     return `\u00d7 ${totalItemRate.toFixed(spec.format.ratePrecision)}/${spec.format.rateName}`
 }
 
 function getTotalBuildingRate(node, totals) {
-    let totalBuildingRate = (node.count.toFloat() * spec.format.rateFactor * node.recipe.product.amount / node.recipe.time)
     let roundedNumberUp = Math.ceil(node.count.toFloat());
-    let roundedNumberDn = Math.floor(node.count.toFloat());
-    let percentNumberUp = (100 * node.count.toFloat() / roundedNumberUp).toFixed(3);
-    let percentNumberDn = (100 * node.count.toFloat() / roundedNumberDn).toFixed(3);
+    let roundedNumberDn = Math.max(Math.floor(node.count.toFloat()),1);
+    let percentNumberUp = (100 * node.count.toFloat() / roundedNumberUp).toFixed(4);
+    let percentNumberDn = (100 * node.count.toFloat() / roundedNumberDn).toFixed(4);
+    let bottomline = (roundedNumberUp > roundedNumberDn ? `\n ${roundedNumberDn} \u00d7 ${percentNumberDn}%` : ``);
 
-    return `Use:\n ${roundedNumberUp} \u00d7 ${percentNumberUp}%\n ${roundedNumberDn} \u00d7 ${percentNumberDn}%`
+    return `Use:\n ${roundedNumberUp} \u00d7 ${percentNumberUp}%${bottomline}` 
 }
 
 function getOverclockString(d) {

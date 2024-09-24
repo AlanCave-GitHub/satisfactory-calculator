@@ -20,7 +20,7 @@ const iconSize = 48
 
 const nodePadding = 20
 
-const columnWidth = 150
+const columnWidth = 100
 const maxNodeHeight = 275
 
 function makeGraph(totals, targets, ignore) {
@@ -130,28 +130,32 @@ function getRateString(d) {
 
 function getMachineCountString(d) {
     console.assert(!d.count.isZero(), "Items that aren't produced through machines can't have a machine count!")
-    return `\u00d7 ${spec.format.count(d.count)}`
+    let roundedNumberUp = Math.ceil(d.count.toFloat());
+    return `\u00d7 ${roundedNumberUp}`
 }
 
-function getTotalItemRate(node, totals) {
-    let divisor = Math.max(node.recipe.time, 1);
-    let totalItemRate = (node.count.toFloat() * spec.format.rateFactor * node.recipe.product.amount / divisor)
-    return `\u00d7 ${totalItemRate.toFixed(spec.format.ratePrecision)}/${spec.format.rateName}`
+function getTotalItemRate(d, totals) {
+    let divisor = Math.max(d.recipe.time, 1);
+    let totalItemRate = (d.count.toFloat() * spec.format.rateFactor * d.recipe.product.amount / divisor)
+    return `\u00d7 ${parseFloat(totalItemRate.toFixed(spec.format.ratePrecision))}/${spec.format.rateName}`
 }
 
-function getTotalBuildingRate(node, totals) {
-    let roundedNumberUp = Math.ceil(node.count.toFloat());
-    let roundedNumberDn = Math.max(Math.floor(node.count.toFloat()),1);
-    let percentNumberUp = (100 * node.count.toFloat() / roundedNumberUp).toFixed(4);
-    let percentNumberDn = (100 * node.count.toFloat() / roundedNumberDn).toFixed(4);
-    let bottomline = (roundedNumberUp > roundedNumberDn ? `\n ${roundedNumberDn} \u00d7 ${percentNumberDn}%` : ``);
+function getBuildingClockRates(d, totals) {
+    let roundedNumberUp = Math.ceil(d.count.toFloat());
+    let roundedNumberDn = Math.max(Math.floor(d.count.toFloat()),1);
+    let percentNumberUp = (100 * d.count.toFloat() / roundedNumberUp).toFixed(spec.format.ratePrecision);
+    let percentNumberDn = (100 * d.count.toFloat() / roundedNumberDn).toFixed(spec.format.ratePrecision);
+    let bottomline = (roundedNumberUp > roundedNumberDn ? `\n ${roundedNumberDn} \u00d7 ${parseFloat(percentNumberDn)}%` : ``);
 
-    return `Use:\n ${roundedNumberUp} \u00d7 ${percentNumberUp}%${bottomline}` 
+    return `${roundedNumberUp} \u00d7 ${parseFloat(percentNumberUp)}%${bottomline}` 
 }
 
 function getOverclockString(d) {
-    console.assert(!d.count.isZero(), "Items that aren't produced through machines (machine count == 0) can't have an overclock value!")
-    return `${spec.getOverclock(d.recipe).mul(Rational.from_float(100)).toString()}%`
+    let roundedNumberUp = Math.ceil(d.count.toFloat());
+    let percentNumberUp = (100 * d.count.toFloat() / roundedNumberUp).toFixed(spec.format.countPrecision);
+    
+    return `${parseFloat(percentNumberUp)}%`
+    //spec.getOverclock(d.recipe).mul(Rational.from_float(100)).toString()
 }
 
 // This is basically an educated guess, but seems to match whatever Chrome and
@@ -363,6 +367,6 @@ export function renderTotals(totals, targets, ignore) {
             .attr("height", d => d.rect.height)
             .on("click", toggleIgnoreHandler)
             .append("title")
-                .text(d => d.node.name + (d.node.count.isZero() ? "" : ` ${getTotalItemRate(d.node, totals)}\n${d.node.building.name} ${getMachineCountString(d.node)}\n${getTotalBuildingRate(d.node, totals)}`))
+                .text(d => d.node.name + (d.node.count.isZero() ? "" : ` ${getTotalItemRate(d.node, totals)}\n${spec.format.count(d.node.count)} \u00d7 ${d.node.building.name} \n ${getBuildingClockRates(d.node, totals)}`))
 }
 

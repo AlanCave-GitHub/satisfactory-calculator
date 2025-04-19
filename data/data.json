@@ -276,7 +276,7 @@
 		{"name": "Plastic","key_name": "plastic","category": "refining","time": 6,"ingredients": [["crude-oil", 3]],"product": ["plastic", 2]},
 		{"name": "Residual Plastic","key_name": "plastic-residual","category": "refining","time": 6,"ingredients": [["polymer-resin", 6],["water", 2]],"product": ["plastic", 2]},
 		{"name": "Recycled Plastic","key_name": "plastic-recycled","category": "refining","time": 12,"ingredients": [["rubber", 6],["fuel", 6]],"product": ["plastic", 12]},
-		{"name": "Polymer Resin","key_name": "polymer-resin","category": "refining","time": 6,"ingredients": [["crude-oil", 6]],"product": ["polymer-resin", 13]},
+		{"name": "Polymer Resin","key_name": "polymer-resin","category": "refining","time": 6,"ingredients": [["crude-oil", 6]],"product": ["polymer-resin", 3]},
 		{"name": "Rubber","key_name": "rubber","category": "refining","time": 6,"ingredients": [["crude-oil", 3]],"product": ["rubber", 2]},
 		{"name": "Residual Rubber","key_name": "rubber-residual","category": "refining","time": 6,"ingredients": [["polymer-resin", 4],["water", 4]],"product": ["rubber", 2]},
 		{"name": "Recycled Rubber","key_name": "rubber-recycled","category": "refining","time": 12,"ingredients": [["plastic", 6],["fuel", 6]],"product": ["rubber", 12]},
